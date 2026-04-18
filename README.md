@@ -1,47 +1,41 @@
 ﻿# RNK Core MapGen
 
-Foundry VTT module for dungeon map generation. Requires the RNK map server running locally or on your network.
+Foundry VTT dungeon map generator - Core tier. Includes everything in Alpha, plus campaign tools, full trap and adversary sets, and multi-row automation.
 
-Compatible with Foundry VTT v13 and v14.
+Support development and unlock additional tiers at https://www.patreon.com/RagNaroks
 
-## Screenshots
+---
 
-![RNK Core MapGen 1](RNK%20Core%20Mapgen%201.jpeg)
+## Features
 
-![RNK Core MapGen 2](RNK%20Core%20Mapgen%202.jpeg)
+**Everything in Alpha, plus:**
 
-![RNK Core MapGen 3](RNK%20Core%20Mapgen%203.jpeg)
+**Dungeon Theme**
+14 themes: Abandoned Mine, Arcane Laboratory, Castle Ruins, Classic Dungeon, Crypt, Forest, Frozen, Infernal, Modern, Natural Cave, Sewer, Temple, Tomb, Underwater.
 
-## v1.0.3
-
-Includes all features from the Alpha tier plus the following.
+**Traps & Hazards**
+All 14 trap types. DC 5-30, radius 1-30.
 
 **Environment**
+Full 19 light animation options. 11 ambient sound options.
 
-Scene darkness from 0 to 1. Light color via color picker. Light intensity from 0 to 1. Light animation: Torch, Flicker, Pulse, Chroma, Wave, Fog, Sunburst, Dome, Emanation, Hexa, Ghost, Energy, Roiling, Vortex, Witchwave, Revolving, Siren, Void Hole, or None.
+**Adversaries**
+All 9 mob types, all 5 density levels, challenge rating selector, patrol count up to 20, and manual mob count (0 = auto).
 
-Ambient sound: None, Dungeon Mix (Layered), Random Variety, Cave Drip, Underwater, Whispering, Creepy Whispering, Eerie, Ominous, or Ominous Drum. Volume from 0 to 1.
+**Automation**
+Row 1 (7 toggles): Walls, Doors, Lights, Sounds, Mobs, Boss, Miniboss.
+Row 2 (5 toggles): Move, PauseCombat, RespectWalls, AvoidPCs, Waypoints.
 
-**Automation and Logic**
+**Campaign Tools**
+Campaign button opens the campaign manager for multi-session dungeon tracking.
 
-Independent toggles for: wall creation, door creation, light creation, sound creation, mob spawning, boss spawning, miniboss spawning, turbo mode, mob movement, pause on combat, wall collision for movement, player avoidance, waypoint generation, auto-activation, and trap waypoint visibility. Movement interval from 1 to 120 seconds.
-
-Accessibility toggles for difficulty ramps, tutorial markers, wheelchair-accessible paths, and safe zones.
-
-**Thematic and Atmosphere**
-
-Sliders for corruption level, decay intensity, magical saturation, and cursed level (each 0 to 10). Environmental hazard: None, Flooding, Lava Flows, Unstable, or Multiple.
+---
 
 ## Installation
 
-Manifest URL:
 ```
 https://github.com/RNK-Enterprise/rnk-core-mapgen-release/releases/latest/download/module.json
 ```
-
-## Support
-
-Patreon: https://www.patreon.com/RagNaroks
 
 ---
 
