@@ -1,0 +1,508 @@
+<form class="rnk-form" autocomplete="off" data-theme="{{#if data.defaults.dungeon_theme}}{{data.defaults.dungeon_theme}}{{else}}classic_dungeon{{/if}}">
+  <!-- Header -->
+  <div class="rnk-header">
+    <div class="rnk-header__title">
+      <img class="rnk-brand-mark" src="modules/rnk-core-mapgen/assets/rnk-mark.svg" alt="" aria-hidden="true">
+      <div class="rnk-brand-copy">
+      <h1><i class="fas fa-dice-d20"></i> RNK CORE MAPGEN</h1>
+        <span class="rnk-tier-badge">Core Tier</span>
+      </div>
+      <span class="rnk-status" data-status="{{data.serverStatus}}"><i class="fas fa-circle"></i> {{data.serverStatus}}</span>
+      <span class="rnk-status" data-patreon-auth-chip data-state="locked" style="margin-left:8px;"><i class="fab fa-patreon"></i> Patreon: locked</span>
+    </div>
+    <div class="rnk-header__actions">
+      <button type="button" class="rnk-btn-icon" data-action="patreon-login" title="Connect Patreon"><i class="fab fa-patreon"></i></button>
+      <button type="button" class="rnk-btn-icon" data-action="patreon-logout" title="Disconnect Patreon"><i class="fas fa-right-from-bracket"></i></button>
+      <button type="button" class="rnk-btn-icon" data-action="test-connection" title="Test Connection"><i class="fas fa-sync-alt"></i></button>
+      <button type="button" class="rnk-btn-icon" data-action="open-tracker" title="Open Scene Tracker"><i class="fas fa-satellite-dish"></i></button>
+    </div>
+  </div>
+
+  <div class="rnk-workspace">
+    <!-- LEFT: CONTROLS (Compact Grid Layout) -->
+    <div class="rnk-controls">
+      <!-- 1. SCENARIO SETTINGS -->
+      <div class="rnk-section">
+        <div class="rnk-section__header"><i class="fas fa-scroll"></i> DUNGEON THEME</div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Theme</label>
+            <select name="dungeon_theme" class="rnk-select">
+              <option value="abandoned_mine" {{#if (eq data.defaults.dungeon_theme "abandoned_mine")}}selected{{/if}}>Abandoned Mine</option>
+              <option value="arcane_laboratory" {{#if (eq data.defaults.dungeon_theme "arcane_laboratory")}}selected{{/if}}>Arcane Laboratory</option>
+              <option value="celestial" {{#if (eq data.defaults.dungeon_theme "celestial")}}selected{{/if}}>Celestial</option>
+              <option value="classic_dungeon" {{#if (eq data.defaults.dungeon_theme "classic_dungeon")}}selected{{/if}}>Classic Dungeon</option>
+              <option value="clockwork" {{#if (eq data.defaults.dungeon_theme "clockwork")}}selected{{/if}}>Clockwork</option>
+              <option value="corrupted_temple" {{#if (eq data.defaults.dungeon_theme "corrupted_temple")}}selected{{/if}}>Corrupted Temple</option>
+              <option value="crypt" {{#if (eq data.defaults.dungeon_theme "crypt")}}selected{{/if}}>Crypt</option>
+              <option value="crystal_cavern" {{#if (eq data.defaults.dungeon_theme "crystal_cavern")}}selected{{/if}}>Crystal Cavern</option>
+              <option value="drow_temple" {{#if (eq data.defaults.dungeon_theme "drow_temple")}}selected{{/if}}>Drow Temple</option>
+              <option value="eldritch" {{#if (eq data.defaults.dungeon_theme "eldritch")}}selected{{/if}}>Eldritch</option>
+              <option value="forest" {{#if (eq data.defaults.dungeon_theme "forest")}}selected{{/if}}>Forest</option>
+              <option value="frozen" {{#if (eq data.defaults.dungeon_theme "frozen")}}selected{{/if}}>Frozen</option>
+              <option value="fungal_underdark" {{#if (eq data.defaults.dungeon_theme "fungal_underdark")}}selected{{/if}}>Fungal Underdark</option>
+              <option value="infernal" {{#if (eq data.defaults.dungeon_theme "infernal")}}selected{{/if}}>Infernal</option>
+              <option value="lava" {{#if (eq data.defaults.dungeon_theme "lava")}}selected{{/if}}>Lava</option>
+              <option value="modern" {{#if (eq data.defaults.dungeon_theme "modern")}}selected{{/if}}>Modern</option>
+              <option value="natural_cave" {{#if (eq data.defaults.dungeon_theme "natural_cave")}}selected{{/if}}>Natural Cave</option>
+              <option value="sewer" {{#if (eq data.defaults.dungeon_theme "sewer")}}selected{{/if}}>Sewer</option>
+              <option value="sunken_ruins" {{#if (eq data.defaults.dungeon_theme "sunken_ruins")}}selected{{/if}}>Sunken Ruins</option>
+              <option value="underwater" {{#if (eq data.defaults.dungeon_theme "underwater")}}selected{{/if}}>Underwater</option>
+              <option value="volcanic" {{#if (eq data.defaults.dungeon_theme "volcanic")}}selected{{/if}}>Volcanic</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. DIMENSIONS & GRID -->
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-vector-square"></i> DIMENSIONS & GRID</div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Width <span class="range-value">{{data.defaults.width}}</span></label>
+            <input type="range" name="width" value="{{data.defaults.width}}" min="20" max="200" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Height <span class="range-value">{{data.defaults.height}}</span></label>
+            <input type="range" name="height" value="{{data.defaults.height}}" min="20" max="200" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Grid Size <span class="range-value">{{data.sceneOptions.gridSize}}</span></label>
+            <input type="range" name="grid_size" value="{{data.sceneOptions.gridSize}}" min="50" max="200" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Seed</label>
+            <input type="text" name="seed" value="{{data.defaults.seed}}" placeholder="Random" class="rnk-input">
+          </div>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Tile Size</label>
+            <select name="tile_size" class="rnk-select">
+              <option value="8">8px</option>
+              <option value="12" selected>12px</option>
+              <option value="16">16px</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Grid Type</label>
+            <select name="grid_type" class="rnk-select">
+              <option value="square" selected>Square</option>
+              <option value="hex">Hex</option>
+            </select>
+          </div>
+          <div class="rnk-field compact" style="flex: 2 1 auto;">
+            <label>Scene Name</label>
+            <input type="text" name="scene_name" value="{{data.defaults.scene_name}}" placeholder="Auto-generated" class="rnk-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. ARCHITECTURE SETTINGS -->
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-door-open"></i> ARCHITECTURE</div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Rooms <span class="range-value">{{data.defaults.room_count}}</span></label>
+            <input type="range" name="room_count" value="{{data.defaults.room_count}}" min="3" max="200" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Levels <span class="range-value">{{data.defaults.total_levels}}</span></label>
+            <input type="range" name="total_levels" value="{{data.defaults.total_levels}}" min="1" max="20" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Variety <span class="range-value">{{data.defaults.room_variety}}</span></label>
+            <input type="range" name="room_variety" value="{{data.defaults.room_variety}}" min="1" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Corridor <span class="range-value">{{data.defaults.corridor_complexity}}</span></label>
+            <input type="range" name="corridor_complexity" value="{{data.defaults.corridor_complexity}}" min="1" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Room Size</label>
+            <select name="room_size" class="rnk-select">
+              <option value="tiny" {{#if (eq data.defaults.room_size "tiny")}}selected{{/if}}>Tiny</option>
+              <option value="small" {{#if (eq data.defaults.room_size "small")}}selected{{/if}}>Small</option>
+              <option value="medium" {{#if (eq data.defaults.room_size "medium")}}selected{{/if}}>Medium</option>
+              <option value="large" {{#if (eq data.defaults.room_size "large")}}selected{{/if}}>Large</option>
+              <option value="huge" {{#if (eq data.defaults.room_size "huge")}}selected{{/if}}>Huge</option>
+            </select>
+          </div>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Symmetry</label>
+            <select name="symmetry_preference" class="rnk-select">
+              <option value="asymmetric" selected>Asymmetric</option>
+              <option value="balanced">Balanced</option>
+              <option value="symmetric">Symmetric</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Verticality</label>
+            <select name="verticality_preference" class="rnk-select">
+              <option value="flat" selected>Flat</option>
+              <option value="moderate">Moderate</option>
+              <option value="multilevel">Multilevel</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Density</label>
+            <select name="connection_density" class="rnk-select">
+              <option value="isolated">Isolated</option>
+              <option value="moderate" selected>Moderate</option>
+              <option value="interconnected">Connected</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Shape</label>
+            <select name="chamber_shape" class="rnk-select">
+              <option value="square" selected>Square</option>
+              <option value="circular">Circular</option>
+              <option value="irregular">Irregular</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Pacing</label>
+            <select name="encounter_pacing" class="rnk-select">
+              <option value="spread" selected>Spread</option>
+              <option value="clustered">Clustered</option>
+            </select>
+          </div>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Branching <span class="range-value">{{data.defaults.branch_factor}}</span></label>
+            <input type="range" name="branch_factor" value="{{data.defaults.branch_factor}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Dead Ends <span class="range-value">{{data.defaults.dead_end_frequency}}</span></label>
+            <input type="range" name="dead_end_frequency" value="{{data.defaults.dead_end_frequency}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Loot Dens. <span class="range-value">{{data.defaults.treasure_density}}</span></label>
+            <input type="range" name="treasure_density" value="{{data.defaults.treasure_density}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Secret Rm. <span class="range-value">{{data.defaults.secret_room_frequency}}</span></label>
+            <input type="range" name="secret_room_frequency" value="{{data.defaults.secret_room_frequency}}" min="0" max="10" class="rnk-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. TRAPS & HAZARDS -->
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-skull"></i> TRAPS & HAZARDS</div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Count <span class="range-value">{{data.defaults.trap_count}}</span></label>
+            <input type="range" name="trap_count" value="{{data.defaults.trap_count}}" min="0" max="100" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>DC <span class="range-value">{{data.defaults.trap_difficulty}}</span></label>
+            <input type="range" name="trap_difficulty" value="{{data.defaults.trap_difficulty}}" min="5" max="30" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Trap Radius <span class="range-value">{{data.defaults.trap_radius}}</span></label>
+            <input type="range" name="trap_radius" value="{{data.defaults.trap_radius}}" min="1" max="30" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Trap Type</label>
+            <select name="trap_type" class="rnk-select">
+              <option value="none" {{#if (eq data.defaults.trap_type "none")}}selected{{/if}}>None (Disabled)</option>
+              <option value="random" {{#if (eq data.defaults.trap_type "random")}}selected{{/if}}>Random</option>
+              <option value="spike" {{#if (eq data.defaults.trap_type "spike")}}selected{{/if}}>Spike Floor</option>
+              <option value="flame" {{#if (eq data.defaults.trap_type "flame")}}selected{{/if}}>Flame Jet</option>
+              <option value="acid" {{#if (eq data.defaults.trap_type "acid")}}selected{{/if}}>Acid Spray</option>
+              <option value="scythe" {{#if (eq data.defaults.trap_type "scythe")}}selected{{/if}}>Scythe Blade</option>
+              <option value="pit" {{#if (eq data.defaults.trap_type "pit")}}selected{{/if}}>Pit Trap</option>
+              <option value="dart" {{#if (eq data.defaults.trap_type "dart")}}selected{{/if}}>Dart Shooter</option>
+              <option value="web" {{#if (eq data.defaults.trap_type "web")}}selected{{/if}}>Web Snare</option>
+              <option value="teleport_random" {{#if (eq data.defaults.trap_type "teleport_random")}}selected{{/if}}>Teleport (Random)</option>
+              <option value="teleport_linked" {{#if (eq data.defaults.trap_type "teleport_linked")}}selected{{/if}}>Teleport (Linked)</option>
+              <option value="gravity" {{#if (eq data.defaults.trap_type "gravity")}}selected{{/if}}>Gravity Well</option>
+              <option value="silence" {{#if (eq data.defaults.trap_type "silence")}}selected{{/if}}>Silence Aura</option>
+              <option value="alarm" {{#if (eq data.defaults.trap_type "alarm")}}selected{{/if}}>Alarm Bell</option>
+              <option value="drain" {{#if (eq data.defaults.trap_type "drain")}}selected{{/if}}>Magic Drain</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. ENVIRONMENT & STYLE -->
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-palette"></i> ENVIRONMENT</div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Darkness <span class="range-value">{{data.sceneOptions.darkness}}</span></label>
+            <input type="range" name="darkness" value="{{data.sceneOptions.darkness}}" min="0" max="1" step="0.1" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Light Color</label>
+            <input type="color" name="light_color" value="{{data.defaults.light_color}}" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Intensity <span class="range-value">{{data.defaults.light_intensity}}</span></label>
+            <input type="range" name="light_intensity" value="{{data.defaults.light_intensity}}" min="0" max="1" step="0.05" class="rnk-input">
+          </div>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Light Animation</label>
+            <select name="light_animation" class="rnk-select">
+              <option value="torch" {{#if (eq data.defaults.light_animation "torch")}}selected{{/if}}>Torch</option>
+              <option value="flicker" {{#if (eq data.defaults.light_animation "flicker")}}selected{{/if}}>Flicker</option>
+              <option value="pulse" {{#if (eq data.defaults.light_animation "pulse")}}selected{{/if}}>Pulse</option>
+              <option value="chroma" {{#if (eq data.defaults.light_animation "chroma")}}selected{{/if}}>Chroma</option>
+              <option value="wave" {{#if (eq data.defaults.light_animation "wave")}}selected{{/if}}>Wave</option>
+              <option value="fog" {{#if (eq data.defaults.light_animation "fog")}}selected{{/if}}>Fog</option>
+              <option value="sunburst" {{#if (eq data.defaults.light_animation "sunburst")}}selected{{/if}}>Sunburst</option>
+              <option value="dome" {{#if (eq data.defaults.light_animation "dome")}}selected{{/if}}>Dome</option>
+              <option value="emanation" {{#if (eq data.defaults.light_animation "emanation")}}selected{{/if}}>Emanation</option>
+              <option value="hexa" {{#if (eq data.defaults.light_animation "hexa")}}selected{{/if}}>Hexa</option>
+              <option value="ghost" {{#if (eq data.defaults.light_animation "ghost")}}selected{{/if}}>Ghost</option>
+              <option value="energy" {{#if (eq data.defaults.light_animation "energy")}}selected{{/if}}>Energy</option>
+              <option value="roiling" {{#if (eq data.defaults.light_animation "roiling")}}selected{{/if}}>Roiling</option>
+              <option value="vortex" {{#if (eq data.defaults.light_animation "vortex")}}selected{{/if}}>Vortex</option>
+              <option value="witchwave" {{#if (eq data.defaults.light_animation "witchwave")}}selected{{/if}}>Witchwave</option>
+              <option value="revolving" {{#if (eq data.defaults.light_animation "revolving")}}selected{{/if}}>Revolving</option>
+              <option value="siren" {{#if (eq data.defaults.light_animation "siren")}}selected{{/if}}>Siren</option>
+              <option value="hole" {{#if (eq data.defaults.light_animation "hole")}}selected{{/if}}>Void Hole</option>
+              <option value="none" {{#if (eq data.defaults.light_animation "none")}}selected{{/if}}>None</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Ambient Sound</label>
+            <select name="sound_ambient" class="rnk-select">
+              <option value="none" {{#if (eq data.defaults.sound_ambient "none")}}selected{{/if}}>None</option>
+              <option value="dungeon" {{#if (eq data.defaults.sound_ambient "dungeon")}}selected{{/if}}>Dungeon Mix (Layered)</option>
+              <option value="random" {{#if (eq data.defaults.sound_ambient "random")}}selected{{/if}}>Random Variety</option>
+              <option value="cave" {{#if (eq data.defaults.sound_ambient "cave")}}selected{{/if}}>Cave Drip</option>
+              <option value="underwater" {{#if (eq data.defaults.sound_ambient "underwater")}}selected{{/if}}>Underwater</option>
+              <option value="whispering" {{#if (eq data.defaults.sound_ambient "whispering")}}selected{{/if}}>Whispering</option>
+              <option value="creepy_whispering" {{#if (eq data.defaults.sound_ambient "creepy_whispering")}}selected{{/if}}>Creepy Whispering</option>
+              <option value="eerie" {{#if (eq data.defaults.sound_ambient "eerie")}}selected{{/if}}>Eerie</option>
+              <option value="ominous" {{#if (eq data.defaults.sound_ambient "ominous")}}selected{{/if}}>Ominous</option>
+              <option value="ominous_drum" {{#if (eq data.defaults.sound_ambient "ominous_drum")}}selected{{/if}}>Ominous Drum</option>
+              <option value="explosion" {{#if (eq data.defaults.sound_ambient "explosion")}}selected{{/if}}>Explosion</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Volume <span class="range-value">{{data.defaults.sound_volume}}</span></label>
+            <input type="range" name="sound_volume" value="{{data.defaults.sound_volume}}" min="0" max="1" step="0.05" class="rnk-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. AUTOMATION & LOGIC -->
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-microchip"></i> AUTOMATION & LOGIC</div>
+        <div class="rnk-row toggles">
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="create_walls" {{#if data.defaults.create_walls}}checked{{/if}}><span class="toggle-switch"></span><span>Walls</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="create_doors" {{#if data.defaults.create_doors}}checked{{/if}}><span class="toggle-switch"></span><span>Doors</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="create_lights" {{#if data.defaults.create_lights}}checked{{/if}}><span class="toggle-switch"></span><span>Lights</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="create_sounds" {{#if data.defaults.create_sounds}}checked{{/if}}><span class="toggle-switch"></span><span>Sounds</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="spawn_mobs" {{#if data.defaults.spawn_mobs}}checked{{/if}}><span class="toggle-switch"></span><span>Mobs</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="spawn_boss" {{#if data.defaults.spawn_boss}}checked{{/if}}><span class="toggle-switch"></span><span>Boss</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="spawn_miniboss" {{#if data.defaults.spawn_miniboss}}checked{{/if}}><span class="toggle-switch"></span><span>Miniboss</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="turbo_mode" {{#if data.defaults.turbo_mode}}checked{{/if}}><span class="toggle-switch"></span><span>Turbo</span>
+          </label>
+        </div>
+        <div class="rnk-row toggles">
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="enable_movement" {{#if data.defaults.enable_movement}}checked{{/if}}><span class="toggle-switch"></span><span>Move</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="pause_on_combat" {{#if data.defaults.pause_on_combat}}checked{{/if}}><span class="toggle-switch"></span><span>PauseCombat</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="respect_walls" {{#if data.defaults.respect_walls}}checked{{/if}}><span class="toggle-switch"></span><span>RespWalls</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="avoid_players" {{#if data.defaults.avoid_players}}checked{{/if}}><span class="toggle-switch"></span><span>AvoidPCs</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="generate_waypoints" {{#if data.defaults.generate_waypoints}}checked{{/if}}><span class="toggle-switch"></span><span>Waypoints</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="auto_activate" {{#if data.defaults.auto_activate}}checked{{/if}}><span class="toggle-switch"></span><span>Active</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="trap_waypoint_visible" {{#if data.defaults.trap_waypoint_visible}}checked{{/if}}><span class="toggle-switch"></span><span>TrapVisible</span>
+          </label>
+        </div>
+        <div class="rnk-row toggles">
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="accessibility_difficulty_ramps" {{#if data.defaults.accessibility_difficulty_ramps}}checked{{/if}}><span class="toggle-switch"></span><span>DiffRamp</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="accessibility_tutorial_markers" {{#if data.defaults.accessibility_tutorial_markers}}checked{{/if}}><span class="toggle-switch"></span><span>Tutorials</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="accessibility_wheelchair_paths" {{#if data.defaults.accessibility_wheelchair_paths}}checked{{/if}}><span class="toggle-switch"></span><span>Wheelchair</span>
+          </label>
+          <label class="rnk-toggle compact">
+            <input type="checkbox" name="accessibility_safe_zones" {{#if data.defaults.accessibility_safe_zones}}checked{{/if}}><span class="toggle-switch"></span><span>SafeZones</span>
+          </label>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Move Interval (s) <span class="range-value">{{data.defaults.movement_interval}}</span></label>
+            <input type="range" name="movement_interval" value="{{data.defaults.movement_interval}}" min="1" max="120" class="rnk-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. THEMATIC & ATMOSPHERE -->
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-biohazard"></i> THEMATIC & ATMOSPHERE</div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Corruption <span class="range-value">{{data.defaults.corruption_level}}</span></label>
+            <input type="range" name="corruption_level" value="{{data.defaults.corruption_level}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Decay <span class="range-value">{{data.defaults.decay_intensity}}</span></label>
+            <input type="range" name="decay_intensity" value="{{data.defaults.decay_intensity}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Magic <span class="range-value">{{data.defaults.magical_saturation}}</span></label>
+            <input type="range" name="magical_saturation" value="{{data.defaults.magical_saturation}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Cursed <span class="range-value">{{data.defaults.cursed_level}}</span></label>
+            <input type="range" name="cursed_level" value="{{data.defaults.cursed_level}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Hzrd Type</label>
+            <select name="environmental_hazard" class="rnk-select">
+              <option value="none" selected>None</option>
+              <option value="flooding">Flooding</option>
+              <option value="lava">Lava Flows</option>
+              <option value="earthquake">Unstable</option>
+              <option value="multiple">Multiple</option>
+            </select>
+          </div>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Shadows <span class="range-value">{{data.defaults.shadow_intensity}}</span></label>
+            <input type="range" name="shadow_intensity" value="{{data.defaults.shadow_intensity}}" min="0" max="1" step="0.1" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Light Dens. <span class="range-value">{{data.defaults.light_source_density}}</span></label>
+            <input type="range" name="light_source_density" value="{{data.defaults.light_source_density}}" min="0" max="10" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Flicker <span class="range-value">{{data.defaults.light_flicker_rate}}</span></label>
+            <input type="range" name="light_flicker_rate" value="{{data.defaults.light_flicker_rate}}" min="0" max="1" step="0.1" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Loot Rarity</label>
+            <select name="mob_loot_rarity" class="rnk-select">
+              <option value="none">None</option>
+              <option value="common" selected>Common</option>
+              <option value="uncommon">Uncommon</option>
+              <option value="rare">Rare</option>
+              <option value="epic">Epic</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Equipment</label>
+            <select name="equipment_quality" class="rnk-select">
+              <option value="common" selected>Common</option>
+              <option value="uncommon">Uncommon</option>
+              <option value="rare">Rare</option>
+              <option value="epic">Epic</option>
+            </select>
+          </div>
+        </div>
+        <div class="rnk-row">
+          <div class="rnk-field compact">
+            <label>Loot Compendium</label>
+            <select name="loot_compendium" class="rnk-select">
+              {{#each data.lootCompendiums}}
+              <option value="{{this.key}}" {{#if (eq ../data.defaults.loot_compendium this.key)}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Loot Folder</label>
+            <select name="loot_folder" class="rnk-select">
+              {{#each data.lootFolders}}
+              <option value="{{this.key}}" {{#if (eq ../data.defaults.loot_folder this.key)}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Items/Room <small>(0=auto)</small></label>
+            <input type="number" name="loot_count" value="{{data.defaults.loot_count}}" min="0" max="20" class="rnk-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 7: ACTION BUTTONS -->
+      <div class="rnk-row actions">
+        <button type="button" class="rnk-btn rnk-btn--primary" data-action="generate">
+          <i class="fas fa-dice-d20"></i> GENERATE
+        </button>
+        <button type="button" class="rnk-btn rnk-btn--warning" data-action="generate-campaign">
+          <i class="fas fa-layer-group"></i> CAMPAIGN
+        </button>
+        <button type="button" class="rnk-btn rnk-btn--success" data-action="create-scene" {{#unless data.hasResult}}disabled{{/unless}}>
+          <i class="fas fa-plus-circle"></i> CREATE
+        </button>
+      </div>
+
+      <!-- ROW 8: EXPORT BUTTONS -->
+      <div class="rnk-row exports">
+        <button type="button" class="rnk-btn-small" data-action="download-png" {{#unless data.hasResult}}disabled{{/unless}}>PNG</button>
+        <button type="button" class="rnk-btn-small" data-action="download-svg" {{#unless data.hasResult}}disabled{{/unless}}>SVG</button>
+        <button type="button" class="rnk-btn-small" data-action="download-json" {{#unless data.hasResult}}disabled{{/unless}}>JSON</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: LARGE PREVIEW -->
+    <div class="rnk-preview-panel {{#if data.hasResult}}has-result{{/if}}">
+      {{#if data.hasResult}}
+        {{#if data.multiLevel}}
+        <div class="rnk-level-nav">
+          <button type="button" class="rnk-btn-icon" data-action="prev-level" {{#if (eq data.multiLevelIndex 0)}}disabled{{/if}}><i class="fas fa-chevron-left"></i></button>
+          <span class="rnk-level-counter">Level {{add data.multiLevelIndex 1}} / {{data.multiLevelCount}}</span>
+          <button type="button" class="rnk-btn-icon" data-action="next-level" {{#if (eq data.multiLevelIndex (subtract data.multiLevelCount 1))}}disabled{{/if}}><i class="fas fa-chevron-right"></i></button>
+        </div>
+        {{/if}}
+        <img class="rnk-preview-image" alt="Dungeon Preview" src="data:image/png;base64,{{data.result.image_png}}">
+        <div class="rnk-preview-info">
+          <div class="info-item"><i class="fas fa-door-open"></i> {{data.result.rooms.length}} Rooms</div>
+          <div class="info-item"><i class="fas fa-route"></i> {{data.result.passages.length}} Passages</div>
+          {{#if (gt (patrolCount data.result.patrols) 0)}}
+          <div class="info-item"><i class="fas fa-eye"></i> {{patrolCount data.result.patrols}} Patrols</div>
+          {{/if}}
+          <div class="info-item"><i class="fas fa-seedling"></i> {{data.result.seed}}</div>
+        </div>
+      {{else}}
+        <div class="rnk-preview-placeholder">
+          <i class="fas fa-dungeon"></i>
+          <p>Generate a dungeon to preview the map</p>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</form>
