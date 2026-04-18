@@ -1,6 +1,6 @@
-﻿# RNK Core MapGen
+# RNK Core MapGen
 
-Foundry VTT dungeon map generator - Core tier. Includes everything in Alpha, plus campaign tools, full trap and adversary sets, and multi-row automation.
+Foundry VTT dungeon map generator — Core tier. Includes everything in Alpha, plus campaign tools, expanded theme and trap sets, and two-row automation. Compatible with Foundry VTT v11+ (verified v14).
 
 Support development and unlock additional tiers at https://www.patreon.com/RagNaroks
 
@@ -11,16 +11,16 @@ Support development and unlock additional tiers at https://www.patreon.com/RagNa
 **Everything in Alpha, plus:**
 
 **Dungeon Theme**
-14 themes: Abandoned Mine, Arcane Laboratory, Castle Ruins, Classic Dungeon, Crypt, Forest, Frozen, Infernal, Modern, Natural Cave, Sewer, Temple, Tomb, Underwater.
+12 themes: Classic Dungeon, Natural Cave, Crypt, Sewer, Forest, Frozen Tundra, Lava Flows, Infernal, Abandoned Mine, Clockwork, Crystal Cavern, Fungal Underdark.
 
 **Traps & Hazards**
-All 14 trap types. DC 5-30, radius 1-30.
+10 trap types: None, Spike Floor, Flame Jet, Pit Trap, Dart Shooter, Acid Spray, Scythe Blade, Web Snare, Alarm Bell, Random. DC 5-30, radius 1-30.
 
 **Environment**
-Full 19 light animation options. 11 ambient sound options.
+12 light animations: Torch, Flicker, Pulse, Chroma, Wave, Fog, Sunburst, Dome, Emanation, Hexa, Ghost, None. 8 ambient sounds: None, Dungeon Mix, Random, Cave Drip, Underwater, Whispering, Eerie, Ominous.
 
 **Adversaries**
-All 9 mob types, all 5 density levels, challenge rating selector, patrol count up to 20, and manual mob count (0 = auto).
+7 mob types (None, Undead, Auto, Humanoid, Beast, Aberration, Fiend), 4 density levels (None, Sparse, Normal, Dense), patrol count up to 20, manual mob count 0-200.
 
 **Automation**
 Row 1 (7 toggles): Walls, Doors, Lights, Sounds, Mobs, Boss, Miniboss.
